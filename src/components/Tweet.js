@@ -4,12 +4,26 @@ import { formatTweet, formatDate } from "../utils/helpers";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { TiHeartOutline } from "react-icons/ti";
 import { TiHeartFullOutline } from "react-icons/ti";
+import { handleToggleTweet } from "../actions/tweets";
 
 class Tweet extends Component {
   handleLike = e => {
     e.preventDefault();
 
     // todo: handle like Tweet
+    const { dispatch, tweet, authedUser } = this.props;
+
+    // if user liked then the hasLiked's value will change to false,
+    // whereas if user unliked the the hasLiked's value will change to true.
+    // These condition will effect in the tweets' TOGGLE_TWEET in .
+
+    dispatch(
+      handleToggleTweet({
+        id: tweet.id,
+        hasLiked: tweet.hasLiked,
+        authedUser
+      })
+    );
   };
 
   toParent = (e, id) => {
