@@ -22,7 +22,7 @@ export default function tweets(state = {}, action) {
       const { tweet } = action;
 
       let replyingTo = {};
-      if (tweet.replyingTo === null) {
+      if (tweet.replyingTo !== null) {
         replyingTo = {
           [tweet.replyingTo]: {
             ...state[tweet.replyingTo],
@@ -34,7 +34,7 @@ export default function tweets(state = {}, action) {
       return {
         ...state,
         [action.tweet.id]: action.tweet,
-        replyingTo
+        ...replyingTo
       };
     default:
       return state;
