@@ -23,7 +23,6 @@ export function handleAddTweet(text, replyingTo) {
       replyingTo
     })
       .then(tweet => {
-        console.log("INI TWEET DI REDUCER HANDLE ADD TWEET", tweet);
         dispatch(addTweet(tweet));
       })
       .then(() => {
